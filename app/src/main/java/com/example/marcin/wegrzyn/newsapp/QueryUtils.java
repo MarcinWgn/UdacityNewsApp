@@ -88,21 +88,23 @@ public class QueryUtils {
         String title;
         String section = "";
         String webUrl;
+        String data;
 
         try {
             JSONObject jsonResponse = new JSONObject(jResponse);
             JSONObject jsonObject = jsonResponse.getJSONObject("response");
             JSONArray jsonResult = jsonObject.getJSONArray("results");
 
-            for (int i = 0; i<jsonResult.length(); i++ ){
+            for (int i = 0; i < jsonResult.length(); i++) {
 
                 JSONObject jsonItem = jsonResult.getJSONObject(i);
 
                 section = jsonItem.getString("sectionName");
                 title = jsonItem.getString("webTitle");
                 webUrl = jsonItem.getString("webUrl");
+                data = jsonItem.getString("webPublicationDate");
 
-                news.add(new News(title,webUrl,section));
+                news.add(new News(title, webUrl, section, data));
             }
 
 
@@ -134,7 +136,6 @@ public class QueryUtils {
     }
 
 
-
     private static URL createURL(String stringUrl) {
 
         URL url = null;
@@ -146,4 +147,4 @@ public class QueryUtils {
         return url;
     }
 
-    }
+}

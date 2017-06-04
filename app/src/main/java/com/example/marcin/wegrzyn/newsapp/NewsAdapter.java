@@ -15,8 +15,8 @@ import java.util.ArrayList;
  * Created by Marcin on 03.06.2017 :)
  */
 
-public class NewsAdapter extends ArrayAdapter <News> {
-    public NewsAdapter(@NonNull Context context, @NonNull ArrayList<News> objects) {
+class NewsAdapter extends ArrayAdapter<News> {
+    NewsAdapter(@NonNull Context context, @NonNull ArrayList<News> objects) {
         super(context, 0, objects);
     }
 
@@ -35,9 +35,11 @@ public class NewsAdapter extends ArrayAdapter <News> {
 
         TextView title = (TextView) listView.findViewById(R.id.titleTv);
         TextView section = (TextView) listView.findViewById(R.id.sectionTv);
+        TextView data = (TextView) listView.findViewById(R.id.dataTv);
 
         title.setText(news.getTitle());
         section.setText(news.getSection());
+        data.setText(news.getStringData());
 
         return listView;
     }

@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements android.app.LoaderManager.LoaderCallbacks<ArrayList<News>>{
+public class MainActivity extends AppCompatActivity implements android.app.LoaderManager.LoaderCallbacks<ArrayList<News>> {
 
     private TextView emptyView;
     private ProgressBar progressBar;
@@ -71,8 +71,8 @@ public class MainActivity extends AppCompatActivity implements android.app.Loade
         Uri baseUri = Uri.parse(URL);
         Uri.Builder uriBuilder = baseUri.buildUpon();
 
-        uriBuilder.appendQueryParameter("q","debates");
-        uriBuilder.appendQueryParameter("api-key","test");
+        uriBuilder.appendQueryParameter("q", "debates");
+        uriBuilder.appendQueryParameter("api-key", "test");
 
 
         return new NewsLoader(this, uriBuilder.toString());
