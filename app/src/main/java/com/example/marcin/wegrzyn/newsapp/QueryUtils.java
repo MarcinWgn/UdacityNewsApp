@@ -89,14 +89,10 @@ public class QueryUtils {
         String section = "";
         String webUrl;
 
-        Log.d(TAG, "Parsowanie start ----> ");
-
         try {
             JSONObject jsonResponse = new JSONObject(jResponse);
             JSONObject jsonObject = jsonResponse.getJSONObject("response");
             JSONArray jsonResult = jsonObject.getJSONArray("results");
-
-            Log.d(TAG, "Poszło ----> "+String.valueOf(jsonResult.length()));
 
             for (int i = 0; i<jsonResult.length(); i++ ){
 
