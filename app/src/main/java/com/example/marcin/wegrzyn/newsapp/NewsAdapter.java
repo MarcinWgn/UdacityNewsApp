@@ -9,12 +9,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by Marcin on 03.06.2017 :)
  */
 
 public class NewsAdapter extends ArrayAdapter <News> {
-    public NewsAdapter(@NonNull Context context, @NonNull News[] objects) {
+    public NewsAdapter(@NonNull Context context, @NonNull ArrayList<News> objects) {
         super(context, 0, objects);
     }
 

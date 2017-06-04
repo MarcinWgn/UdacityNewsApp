@@ -19,11 +19,15 @@ public class NewsLoader extends AsyncTaskLoader<ArrayList<News>> {
     }
 
     @Override
+    protected void onStartLoading() {
+        forceLoad();
+    }
+
+    @Override
     public ArrayList<News> loadInBackground() {
 
         if (stringUrl == null) return null;
 
-        // TODO: 03.06.2017 dodać zapytanie QueryUtils
-        return null;
+        return QueryUtils.extractNewsData(stringUrl);
     }
 }

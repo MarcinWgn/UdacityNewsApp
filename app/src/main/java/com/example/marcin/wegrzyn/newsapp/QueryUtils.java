@@ -17,7 +17,6 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by Marcin on 03.06.2017 :)
@@ -26,11 +25,12 @@ import static android.content.ContentValues.TAG;
 public class QueryUtils {
 
     private static final String GET = "GET";
+    private static final String TAG = QueryUtils.class.getName();
 
     public QueryUtils() {
     }
 
-    static ArrayList<News> extractBookData(String stringUrl) {
+    static ArrayList<News> extractNewsData(String stringUrl) {
 
         URL url = createURL(stringUrl);
         String jResponse = null;
@@ -85,29 +85,34 @@ public class QueryUtils {
         ArrayList<News> news = new ArrayList<>();
 
 
-        JSONObject jsonObject = null;
-
         String title;
         String section = "";
         String webUrl;
 
+        Log.d(TAG, "Parsowanie start ----> ");
+
         try {
-            jsonObject = new JSONObject(jResponse);
-            JSONArray jsonArray = jsonObject.getJSONArray("results");
+            JSONObject jsonResponse = new JSONObject(jResponse);
+            JSONObject jsonObject = jsonResponse.getJSONObject("response");
+            JSONArray jsonResult = jsonObject.getJSONArray("results");
 
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject object = jsonArray.getJSONObject(i);
-                JSONObject objectSectionName = object.getJSONObject("sectionName");
+            Log.d(TAG, "Poszło ----> "+String.valueOf(jsonResult.length()));
 
-                title = objectVolumeInfo.getString("title");
+            for (int i = 0; i<jsonResult.length(); i++ ){
 
-                news.add(new News());
+                JSONObject jsonItem = jsonResult.getJSONObject(i);
 
+                section = jsonItem.getString("sectionName");
+                title = jsonItem.getString("webTitle");
+                webUrl = jsonItem.getString("webUrl");
+
+                news.add(new News(title,webUrl,section));
             }
+
 
         } catch (JSONException e) {
             e.printStackTrace();
-            Log.e(TAG, "Error Parsing" + e);
+
         }
 
 
