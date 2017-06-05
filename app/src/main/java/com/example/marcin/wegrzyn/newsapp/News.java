@@ -4,7 +4,7 @@ package com.example.marcin.wegrzyn.newsapp;
  * Created by Marcin on 03.06.2017 :)
  */
 
-class News {
+final class News {
     public String getStringData() {
         return stringData;
     }
